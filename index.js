@@ -44,10 +44,12 @@ function addGamesToPage(games) {
         var gameName=games[i].name;
         var gameImage=games[i].img;
         var gameDescription=games[i].description;
+        var gamePledged=games[i].pledged;
         const gameDisplay=`
     <br>
             <p>${gameName} is currently crowdfunding!</p>
             <img class="game-img" src="${gameImage}"></img>
+            <p><b>Total Raised: </b>$${gamePledged.toLocaleString()}</p>
             <p>Description: ${gameDescription}</p>
 
     `;
@@ -198,6 +200,7 @@ descriptionContainer.appendChild(explainUnfunded);
  * CODE: toLocaleString<div>1ivy
  * Challenge 7: Select & display the top 2 games
  * Skills used: spread operator, destructuring, template literals, sort 
+ * FINAL CODE: zoohowcedar
  */
 
 const firstGameContainer = document.getElementById("first-game");
