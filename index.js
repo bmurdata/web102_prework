@@ -5,6 +5,7 @@
 */
 
 // import the JSON data about the crowd funded games from the games.js file
+import games from './games.js';
 import GAMES_DATA from './games.js';
 
 // create a list of objects to store the data about the games using JSON.parse
@@ -105,7 +106,7 @@ const totalRaised= GAMES_JSON.reduce( (acc,game) => {
     return acc+ game.pledged;
 },0);
 const templateInner2=`
-<p>$${totalRaised}</p>
+<p>$${totalRaised.toLocaleString()}</p>
 `
 raisedCard.innerHTML=templateInner2;
 
@@ -178,14 +179,23 @@ allBtn.addEventListener('click',showAllGames);
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
-
+const unfundedGames=GAMES_JSON.reduce((acc, game)=>{
+    return acc + (game.pledged<game.goal ?1 :0); 
+},0);
 
 // create a string that explains the number of unfunded games using the ternary operator
+const descriptionString= `
+<p> $${totalRaised.toLocaleString()} has been raised so far for ${GAMES_JSON.length} games. ${unfundedGames} have not reached their goals. Help us fund these games!</p>
+`
+console.log(descriptionString);
 
 
 // create a new DOM element containing the template string and append it to the description container
-
+var explainUnfunded= document.createElement('p');
+explainUnfunded.innerHTML=descriptionString;
+descriptionContainer.appendChild(explainUnfunded);
 /************************************************************************************
+ * CODE: toLocaleString<div>1ivy
  * Challenge 7: Select & display the top 2 games
  * Skills used: spread operator, destructuring, template literals, sort 
  */
