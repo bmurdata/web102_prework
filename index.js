@@ -111,6 +111,8 @@ raisedCard.innerHTML=templateInner2;
 
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
+const numGames=GAMES_JSON.length;
+gamesCard.innerText=numGames;
 
 
 /*************************************************************************************
