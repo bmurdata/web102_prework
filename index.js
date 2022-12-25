@@ -45,11 +45,14 @@ function addGamesToPage(games) {
         var gameImage=games[i].img;
         var gameDescription=games[i].description;
         var gamePledged=games[i].pledged;
+        var gameNeeded=games[i].goal;
         const gameDisplay=`
     <br>
             <p>${gameName} is currently crowdfunding!</p>
             <img class="game-img" src="${gameImage}"></img>
+            <p><b>Goal: </b>$${gameNeeded.toLocaleString()}</p>
             <p><b>Total Raised: </b>$${gamePledged.toLocaleString()}</p>
+            <p><b>Status: </b>${gamePledged<gameNeeded? "Just $"+(gameNeeded-gamePledged).toLocaleString()+" to go!":"Funded!"}</p>
             <p>Description: ${gameDescription}</p>
 
     `;
@@ -205,13 +208,20 @@ descriptionContainer.appendChild(explainUnfunded);
 
 const firstGameContainer = document.getElementById("first-game");
 const secondGameContainer = document.getElementById("second-game");
-
+// Compare function!
 const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
     return item2.pledged - item1.pledged;
 });
-
+//console.log(sortedGames);
 // use destructuring and the spread operator to grab the first and second games
+let [topGame,secondGame,...otherGames]=sortedGames;
 
 // create a new element to hold the name of the top pledge game, then append it to the correct element
+var newItem=document.createElement('p');
+newItem.innerText=`${topGame.name} with a total of: $${topGame.pledged.toLocaleString()}`;
+firstGameContainer.appendChild(newItem);
 
 // do the same for the runner up item
+var newItem=document.createElement('p');
+newItem.innerText=`${secondGame.name} with a total of: $${secondGame.pledged.toLocaleString()}`;
+secondGameContainer.appendChild(newItem);
