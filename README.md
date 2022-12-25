@@ -34,7 +34,7 @@ GIF created with [LiceCap](https://www.cockos.com/licecap/)
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Some of the JS code pushed me to learn more- such as how the sorted games array was made, as well as how modules differ from normal code. Otherwise striaghtforward project. 
 
 ## License
 
